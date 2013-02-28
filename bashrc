@@ -50,9 +50,9 @@ rvm_prompt() {
 get_current_window() {
     # Screen
     if [ $WINDOW ]; then
-        echo "[W$WINDOW] ";
+        echo " [W$WINDOW]";
     elif [ $TMUX_PANE ]; then
-        echo "[$TMUX_PANE] ";
+        echo " [$TMUX_PANE]";
     fi
 }
 color_by_last_exit_code() {
@@ -62,7 +62,12 @@ color_by_last_exit_code() {
         printf ${BRed};
     fi
 }
-PS1='\[$(color_by_last_exit_code)\]\A \['$BYellow'\]\u\['$BWhite'\]@\h \['$BRed'\][$TTY] \['$BPurple'\]$(get_current_window)\['$BGreen'\][\w] \['$Yellow'\]$(current_git_branch)$(git_since_last_commit)$(rvm_prompt) \['$Color_Off'\]\n\$ '
+PS1='\[$(color_by_last_exit_code)\]\A \
+\['$BYellow'\]\u\['$BWhite'\]@\h\
+\['$BPurple'\]$(get_current_window) \
+\['$BGreen'\][\w] \
+\['$Yellow'\]$(current_git_branch)$(git_since_last_commit)$(rvm_prompt) \
+\['$Color_Off'\]\n\$ '
 ## END of PS1 config
 
 alias diff='colordiff'              # requires colordiff package
